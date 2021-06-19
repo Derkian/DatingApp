@@ -1,0 +1,12 @@
+--roda o dotnet core
+dotnet watch run
+
+--cria uma nova api do dotnetcore 
+dotnet new webapi
+
+--Cria o migration para o Banco de dados
+--mas é necessário instalar o donet ef
+dotnet ef migrations add InitialCreate -o Data/Migrations
+
+
+
