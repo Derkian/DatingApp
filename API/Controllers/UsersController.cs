@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
@@ -47,7 +45,7 @@ namespace API.Controllers
 
             return Ok(users);
         }
-
+        
         //api/users/1          
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemeberDto>> GetUser(string username)
