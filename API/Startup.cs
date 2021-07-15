@@ -74,12 +74,16 @@ namespace API
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<PresenceHub>("hubs/presence"); //SignalR
                 endpoints.MapHub<MessageHub>("hubs/message"); //SignalR
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
