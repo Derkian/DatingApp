@@ -50,7 +50,10 @@ namespace API.Controllers
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemeberDto>> GetUser(string username)
         {
-            return await _unitOfWork.UserRepository.GetMemeberAsync(username);
+            var currentUser = User.GetUserName();
+
+            return await _unitOfWork.UserRepository.GetMemeberAsync(username,
+                                                                    isCurrentUser: currentUser == username);
         }
 
         [HttpPut]
@@ -81,9 +84,6 @@ namespace API.Controllers
                 Url = result.SecureUrl.AbsoluteUri,
                 PublicId = result.PublicId
             };
-
-            if (user.Photos.Count == 0)
-                photo.IsMain = true;
 
             user.Photos.Add(photo);
 
