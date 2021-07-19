@@ -116,8 +116,8 @@ namespace API.Controllers
         public async Task<ActionResult> DeletePhoto(int photoId)
         {
             var user = await _unitOfWork.UserRepository.GetUserByNameAsync(User.GetUserName());
-
-            var photo = user.Photos.FirstOrDefault(photo => photo.Id == photoId);
+            
+            var photo = await _unitOfWork.PhotoRepository.GetPhotoById(photoId);
 
             if (photo == null) return NotFound();
 
